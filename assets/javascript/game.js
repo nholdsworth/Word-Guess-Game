@@ -20,7 +20,8 @@
 9. After the user wins/loses the game should automatically choose another word and make the user play it.*/
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//CREATING ME SOME VARIABLES USING LET INSTEAD OF VAR
+
+//CREATING ME SOME VARIABLES!!!
 
 // Create an array of words
 let words = ['Gaunter O\'Dimm', 'Geralt', 'Vessimir', 'Dandelion', 'Lambert'];
@@ -45,7 +46,7 @@ let wins = 0;
 //This is the number of guesses the user has left before losing
 let chancesLeft = 7;
 
-//splits random Word 
+//splits the randomly chosen word into an array so that each character has an index
 let splitWord = randomWord.split('');
 
 /*This Array holds the actual word SPLIT into it's own ARRAY and is not converted to underscores.  
@@ -66,10 +67,12 @@ let currentWordText = document.getElementById('current-word');
 let currentPicture = document.getElementById('current-picture');
 
 //This holds a reference to the letters-guessed HTML element 
-let lettersGuessedArray = document.getElementById('letters-guessed');
+let lettersGuessedArrayText = document.getElementById('letters-guessed');
 
-/*This function splits chosen word into an array. so that each character will then have it's    
-    own index which can then be be replaced by the the userInput function*/
+let remainingGuessesText = document.getElementById('remaining-guesses');
+
+/*This function takes the randomWord variable that has been split into it's own array using
+.split and replaces each character in the array with an underscore */
 function resetGame() {
 
     for (let i = 0; i < splitWord.length; i++) {
@@ -96,43 +99,38 @@ function letterChoice (userInput) {
         if (userInput === randomWordArray[i]) {
             splitWord[i] = userInput;
             console.log(splitWord);
-        } else {
-            lettersGuessedArray.push(userInput);
-            chancesLeft -= 1;
-            remainingGuessesText.textContent = `You have ${chancesLeft}!`;
-        }    
+        }
     }
+    if (userInput != randomWordArray.indexOf()) {
+        lettersGuessedArray.push(userInput);
+        lettersGuessedArrayText.textContent = lettersGuessedArray;
+        chancesLeft -= 1;
+        remainingGuessesText.textContent = `You have ${chancesLeft}!`;
+    }    
 }
 
 
 
 //THIS IS WHERE MY GAME BEGINS
-
-
-
-//Set correct key presses to corresponding index number in the array.
-
-/*If user chooses a letter that exists in the currentWordText 
-    1. Switch underscore with the correct letter (in the right place obviously)*/
-
+//When the user presses a key:
 document.onkeyup = function (event) {
 
     // Hides instructions p tag in the HTML when key is pressed
     instructionsText.textContent = '';
 
-    //Display Undersores to represent the random word letters
+    //Display Undersores to represent the random word letters but needed to be placed below instead of here...
     // currentWordText.innerHTML = splitWord.join(' ');
 
     //when the user presses a key captures it and assigns it to userGuess
     let userGuess = event.key;
 
+    //This calls the function letterChoice when the user presses a key
     letterChoice(userGuess);
-    //This replaces the empty HTML element with the id current word with a rondomly generated word
-    // currentWordText.textContent = randomWord;
 
+    // currentWordText.textContent = randomWord;
     currentWordText.innerHTML = splitWord.join(' ');
 
-    if (chancesLeft = 0) {
+    if (chancesLeft = 0 || //user guesses the word)  {
         resetGame();
     }
 
