@@ -1,0 +1,22 @@
+body{
+    background-image: url(../images/WitcherHangmanTree.png);
+    background-size: 100%;
+}
+
+.text{
+    color: white;
+}
+
+h1{
+    text-align:center;
+    padding: 1em 1em 0em 1em;
+    font-size: 3.5em;
+    font-family: 'Fontdiner Swanky';
+}
+
+#instructions{
+    padding: 1em;
+    text-align:center;
+    font-family: 'Fontdiner Swanky';
+
+}
