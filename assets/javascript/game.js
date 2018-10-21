@@ -130,11 +130,8 @@ document.onkeyup = function (event) {
     // currentWordText.textContent = randomWord;
     currentWordText.innerHTML = splitWord.join(' ');
 
-    if (chancesLeft = 0 || //user guesses the word)  {
+    if (chancesLeft = 0)  {
         resetGame();
-    }
-
-    
-    
+    }    
 }
 
